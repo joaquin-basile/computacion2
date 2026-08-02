@@ -1,0 +1,12 @@
+# Plataforma nativa del host (Apple Silicon). El formato de /proc es
+# identico en arm64 y amd64 a nivel userspace: leemos campos formateados
+# y usamos deltas de jiffies, asi que no necesitamos emular amd64.
+services:
+  monitor:
+    build: .
+    platform: linux/arm64
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./src:/app/src
+      - ./config.json:/app/config.json
